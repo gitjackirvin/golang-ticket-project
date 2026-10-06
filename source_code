@@ -1,0 +1,67 @@
+package main
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	// Constants for ticket, burger, and drink prices
+	const ticketPrice = 15.50
+	const burgerPrice = 4.50
+	const drinkPrice = 2.50
+
+	// Variables for ticket quantity and if user would like concessions
+	var quantity int
+	var response string
+
+	// Input/output for ticket quantity
+	fmt.Printf("How many tickets would you like?\n")
+	_, err := fmt.Scanf("%d", &quantity)
+
+	// Error checking for valid ticket numbers
+	if err != nil || quantity <= 0 {
+		fmt.Println("Error: Please enter a valid number of tickets.")
+		return
+	}
+
+	// Calculate ticket price
+	totalPrice := float64(quantity) * ticketPrice
+
+	// Input/output for concessions prompt
+	fmt.Printf("Would you like any concessions? (yes/no)\n")
+	_, err = fmt.Scanf("%s", &response)
+
+	// Error checking for valid concessions prompt
+	if err != nil || quantity <= 0 {
+		fmt.Println("Error: Unable to read input.")
+	}
+	
+	// Normalizes concession prompt to all lowercase
+	response = strings.ToLower(response)
+
+	// Logic for concessions prompt
+	if response == "yes" || response == "y" {
+		var burgers int
+		var drinks int
+
+	// Input/output for burgers
+	fmt.Printf("How many burgers would you like?\n")
+	_, err = fmt.Scanf("%d", &burgers)
+	if err != nil || burgers <= 0 {
+		fmt.Println("Error: Invalid number of burgers")
+		return
+	}
+
+	// Input/output for drinks
+	fmt.Printf("How many drinks would you like?\n")
+	_, err = fmt.Scanf("%d", &drinks)
+	if err != nil || drinks <= 0 {
+		fmt.Println("Error: Invalid number of drinks")
+		return
+	}
+
+	totalPrice += (float64(burgers) * burgerPrice) + (float64(drinks) * drinkPrice)
+	}
+	fmt.Printf("\nSuccess! Your total bill is: $%.2f\n", totalPrice)
+
+}
